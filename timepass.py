@@ -17,22 +17,23 @@ else:
 st.header('Enter the edges in format a -> b form.')
 text = st.text_input('Input Here')
 
+
 text = str(text)
 text = text.strip()
 
 relation = text.split(' ')
 
 
-
-if bidirectional:
-    graph = graphviz.Graph()
-    for x in relation:
-        a_b = x.split('->')
-        graph.edge(a_b[0],a_b[1])
-    st.graphviz_chart(graph)
-else:
-    graph = graphviz.Digraph()
-    for x in relation:
-        a_b = x.split('->')
-        graph.edge(a_b[0],a_b[1])
-    st.graphviz_chart(graph)
+if len(relation)>0:
+    if bidirectional:
+        graph = graphviz.Graph()
+        for x in relation:
+            a_b = x.split('->')
+            graph.edge(a_b[0],a_b[1])
+        st.graphviz_chart(graph)
+    else:
+        graph = graphviz.Digraph()
+        for x in relation:
+            a_b = x.split('->')
+            graph.edge(a_b[0],a_b[1])
+        st.graphviz_chart(graph)
