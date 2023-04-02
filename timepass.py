@@ -20,20 +20,27 @@ text = st.text_input('Input Here')
 
 text = str(text)
 text = text.strip()
-
 relation = text.split(' ')
 
 
-if len(relation)>0:
+if len(text)>0:
     if bidirectional:
         graph = graphviz.Graph()
         for x in relation:
             a_b = x.split('->')
-            graph.edge(a_b[0],a_b[1])
+            try:
+                graph.edge(a_b[0],a_b[1])
+            except:
+                st.warning('Enter in the correct format')
+                st.stop()
         st.graphviz_chart(graph)
     else:
         graph = graphviz.Digraph()
         for x in relation:
             a_b = x.split('->')
-            graph.edge(a_b[0],a_b[1])
+            try:
+                graph.edge(a_b[0],a_b[1])
+            except:
+                st.warning('Enter in the correct format')
+                st.stop()
         st.graphviz_chart(graph)
